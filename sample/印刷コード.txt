@@ -14,10 +14,8 @@ private void Print_Click(object sender, System.EventArgs e)
 private void pd_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
 {
     //画像の読み込み
-    Image img = Image.FromFile("sample.jpg");
- 
-    //画像の描画
-    e.Graphics.DrawImage(img, e.MarginBounds);
- 
-    img.Dispose();
-}
+    using (Image img = Image.FromFile("sample.jpg")){
+        //画像の描画
+        e.Graphics.DrawImage(img, e.MarginBounds);
+    }
+ }
