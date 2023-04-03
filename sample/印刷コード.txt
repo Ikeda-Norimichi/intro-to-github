@@ -1,0 +1,23 @@
+private void Print_Click(object sender, System.EventArgs e)
+{
+    //PrintDocumentオブジェクトの作成
+    System.Drawing.Printing.PrintDocument pd = new System.Drawing.Printing.PrintDocument();
+ 
+    //PrintPageイベントハンドラの追加
+    pd.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(pd_PrintPage);
+ 
+    //印刷開始
+    pd.Print();
+}
+ 
+//PrintPageイベントハンドラ
+private void pd_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+{
+    //画像の読み込み
+    Image img = Image.FromFile("sample.jpg");
+ 
+    //画像の描画
+    e.Graphics.DrawImage(img, e.MarginBounds);
+ 
+    img.Dispose();
+}
